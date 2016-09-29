@@ -83,9 +83,9 @@ abstract class Core
      *
      * @param string $method
      */
-    public function setConfigContentType($ContentType)
+    public function setConfigContentType($contentType)
     {
-        $this->_ContentType = strtoupper($ContentType);
+        $this->_contentType = strtoupper($contentType);
 
         return $this;
     }
@@ -95,9 +95,9 @@ abstract class Core
      *
      * @param string $secretKey
      */
-    public function setConfigRequestMethod($RequestMethod)
+    public function setConfigRequestMethod($requestMethod)
     {
-        $this->_RequestMethod = $RequestMethod;
+        $this->_requestMethod = $requestMethod;
 
         return $this;
     }
@@ -109,7 +109,7 @@ abstract class Core
      */
     public function getLastRequest()
     {
-        $url;
+        $response = new Response;
     }
     /**
      * getLastResponse
@@ -136,7 +136,7 @@ abstract class Core
     public function generateUrl($name, $params, $body)
     {
         $action = ucfirst($name);
-        return $this->generateUrlBody($params, $this->_secretKey, $this->_ContentType, $this->_RequestMethod, $this->_serverHost.$name, $body);
+        return $this->generateUrlBody($params, $this->_secretKey, $this->_contentType, $this->_requestMethod, $this->_serverHost.$name, $body);
     }
     
     /**
@@ -152,19 +152,21 @@ abstract class Core
      *
      * @return
      */
-    public static function generateUrlBody($paramArray, $secretKey, $ContentType, $requestMethod, $url, $body)
+    public static function generateUrlBody($paramArray, $secretKey, $contentType, $requestMethod, $url, $body)
     {
-        if ($ContentType) {
-            $header[] = 'Content-Type:'.strtolower($ContentType);
+        if ($contentType) {
+            $header[] = 'Content-Type:'.strtolower($contentType);
         }
 
         $header[] = 'Ocp-Apim-Subscription-Key:'.$secretKey;
-        if ($requestMethod == 'GET') {
-            $url .= '&'.http_build_query($body);
-        } else {
-            $url .= '?'.http_build_query($paramArray);
-            $urlBody['body'] = $body;
+        switch ($requestMethod) {
+            case 'GET': $url .= '&'.http_build_query($body);
+                break;
+            default:  $url .= '?'.http_build_query($paramArray);
+                $urlBody['body'] = $body;
+                break;
         }
+        
         $urlBody = array_merge(array('url' => $url, 'method' => $requestMethod, 'header' => $header), $urlBody);
 
         return $urlBody;
@@ -205,7 +207,7 @@ abstract class Core
             $params[1] = $arguments[1];
         }
 
-        $response = $this->send($params, $this->_secretKey, $this->_ContentType, $this->_RequestMethod, $this->_serverHost.$action);
+        $response = $this->send($params, $this->_secretKey, $this->_contentType, $this->_requestMethod, $this->_serverHost.$action);
 
         return $response;
     }
@@ -223,27 +225,27 @@ abstract class Core
      *
      * @return
      */
-    public static function send($paramArray, $secretKey, $ContentType, $requestMethod, $requestHost)
+    public static function send($paramArray, $secretKey, $contentType, $requestMethod, $requestHost)
     {
         $param = $paramArray[0];
         $body = $paramArray[1];
-        if ($ContentType) {
-            $header[] = 'Content-Type:'.strtolower($ContentType);
+        if ($contentType) {
+            $header[] = 'Content-Type:'.strtolower($contentType);
         }
 
         $header[] = 'Ocp-Apim-Subscription-Key:'.$secretKey;
         
         $url = $requestHost;
 
-        if ($requestmethod == 'POST') {
-            $url .= '?'.http_build_query($param);
-        } else {
-            $url .= '&'.http_build_query($body);
+        switch ($requestMethod) {
+            case 'POST': $url .= '?'.http_build_query($param);
+                break;
+            default: $url .= '&'.http_build_query($body);
+                break;
         }
-        
-        $req = new Request($requestMethod, $url, $header, $body);
+        $request = new Request($requestMethod, $url, $header, $body);
 
-        return $ret;
+        return $request;
     }
     
     /**
@@ -263,6 +265,7 @@ abstract class Core
 
             return false;
         }
+        
         if (count($response)) {
             return $response;
         } else {
