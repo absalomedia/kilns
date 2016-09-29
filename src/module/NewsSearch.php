@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * Kilns_Module_NewsSearch
+ * Kilns_Module_NewsSearch.
  */
 class NewsSearch extends Core
 {

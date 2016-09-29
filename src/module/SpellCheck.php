@@ -1,6 +1,7 @@
 <?php
 
 namespace ABM\Kilns\Module;
+
 /**
  * Kilns_Module_SpellCheck
  * 云服务器模块类.
