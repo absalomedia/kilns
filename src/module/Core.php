@@ -22,6 +22,22 @@ abstract class Core
      */
     protected $secretKey = '';
 
+     /**
+     * $contentType
+     * 接口域名.
+     *
+     * @var string
+     */
+    protected $contentType = '';   
+
+     /**
+     * $requestMethod
+     * 接口域名.
+     *
+     * @var string
+     */
+    protected $requestMethod = '';       
+    
     /**
      * __construct.
      *
@@ -160,7 +176,7 @@ abstract class Core
     public static function generateUrlBody($paramArray, $secretKey, $contentType, $requestMethod, $url, $body)
     {
         $header = [];
-        $urlBopy = [];
+        $urlBody = [];
         if ($contentType) {
             $header[] = 'Content-Type:'.strtolower($contentType);
         }
@@ -218,7 +234,7 @@ abstract class Core
             $params[1] = $arguments[1];
         }
 
-        $response = $this->send($params, $this->_secretKey, $this->_contentType, $this->_requestMethod, $this->_serverHost.$action);
+        $response = $this->send($params, $this->secretKey, $this->contentType, $this->requestMethod, $this->serverHost.$action);
 
         return $response;
     }
