@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * Kilns_Module_Linguistics
+ * Kilns_Module_Linguistics.
  */
 class Linguistics extends Core
 {

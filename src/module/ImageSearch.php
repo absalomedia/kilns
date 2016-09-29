@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * ImageSearch
+ * ImageSearch.
  */
 class ImageSearch extends Core
 {

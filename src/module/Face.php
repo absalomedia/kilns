@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * Face
+ * Face.
  */
 class Face extends Core
 {

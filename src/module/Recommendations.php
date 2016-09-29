@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * Recommendations
+ * Recommendations.
  */
 class Recommendations extends Core
 {

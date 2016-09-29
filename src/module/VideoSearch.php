@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * VideoSearch
+ * VideoSearch.
  */
 class VideoSearch extends Core
 {

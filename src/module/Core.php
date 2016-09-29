@@ -2,8 +2,6 @@
 
 namespace ABM\Kilns\Module;
 
-use GuzzleHttp\Guzzle;
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 
@@ -29,12 +27,13 @@ abstract class Core
      *
      * @param array $config [description]
      */
-    public function __construct($config = array())
+    public function __construct($config = [])
     {
         if (!empty($config)) {
             $this->setConfig($config);
         }
     }
+
     /**
      * setConfig
      * 设置配置.
@@ -57,14 +56,14 @@ abstract class Core
                 case 'Request-Method':
                     $this->setConfigRequestMethod($val);
                     break;
-                default:
-                    ;
+                default:;
                     break;
             }
         }
 
         return true;
     }
+
     /**
      * setConfigSecretKey
      * 设置secretKey.
@@ -77,6 +76,7 @@ abstract class Core
 
         return $this;
     }
+
     /**
      * setConfigRequestMethod
      * 设置请求方法.
@@ -89,6 +89,7 @@ abstract class Core
 
         return $this;
     }
+
     /**
      * setConfigSecretKey
      * 设置secretKey.
@@ -101,6 +102,7 @@ abstract class Core
 
         return $this;
     }
+
     /**
      * getLastRequest
      * 获取上次请求的url.
@@ -109,8 +111,9 @@ abstract class Core
      */
     public function getLastRequest()
     {
-        $response = new Response;
+        $response = new Response();
     }
+
     /**
      * getLastResponse
      * 获取请求的原始返回.
@@ -119,10 +122,11 @@ abstract class Core
      */
     public function getLastResponse($response)
     {
-        $response = new Response;
-        
+        $response = new Response();
+
         return $response;
     }
+
     /**
      * generateUrl
      * 生成请求的URL，不发起请求
@@ -136,9 +140,10 @@ abstract class Core
     public function generateUrl($name, $params, $body)
     {
         $action = ucfirst($name);
+
         return $this->generateUrlBody($params, $this->_secretKey, $this->_contentType, $this->_requestMethod, $this->_serverHost.$name, $body);
     }
-    
+
     /**
      * generateUrlBody
      * 生成请求的URLBody.
@@ -166,11 +171,12 @@ abstract class Core
                 $urlBody['body'] = $body;
                 break;
         }
-        
-        $urlBody = array_merge(array('url' => $url, 'method' => $requestMethod, 'header' => $header), $urlBody);
+
+        $urlBody = array_merge(['url' => $url, 'method' => $requestMethod, 'header' => $header], $urlBody);
 
         return $urlBody;
     }
+
     /**
      * __call
      * 通过__call转发请求
@@ -187,6 +193,7 @@ abstract class Core
 
         return $this->dealResponse($response);
     }
+
     /**
      * _dispatchRequest
      * 发起接口请求
@@ -199,7 +206,7 @@ abstract class Core
     protected function dispatchRequest($name, $arguments)
     {
         $action = ucfirst($name);
-        $params = array();
+        $params = [];
         if (is_array($arguments) && !empty($arguments)) {
             $params[0] = (array) $arguments[0];
         }
@@ -234,7 +241,7 @@ abstract class Core
         }
 
         $header[] = 'Ocp-Apim-Subscription-Key:'.$secretKey;
-        
+
         $url = $requestHost;
 
         switch ($requestMethod) {
@@ -247,7 +254,7 @@ abstract class Core
 
         return $request;
     }
-    
+
     /**
      * _dealResponse
      * 处理返回.
@@ -265,7 +272,7 @@ abstract class Core
 
             return false;
         }
-        
+
         if (count($response)) {
             return $response;
         } else {
