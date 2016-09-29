@@ -77,7 +77,7 @@ class Kilns
      *
      * @return
      */
-    public static function load($moduleName, $moduleConfig = array())
+    public static function load($moduleName, $moduleConfig = [])
     {
         $moduleName = ucfirst($moduleName);
         $moduleClassFile = KILNS_ROOT_PATH.'/module/'.$moduleName.'.php';

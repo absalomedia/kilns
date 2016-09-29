@@ -3,7 +3,7 @@
 namespace ABM\Kilns\Module;
 
 /**
- * Emotion
+ * Emotion.
  */
 class Emotion extends Core
 {
