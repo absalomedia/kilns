@@ -56,7 +56,7 @@ abstract class Core
                 case 'Request-Method':
                     $this->setConfigRequestMethod($val);
                     break;
-                default:;
+                default:
                     break;
             }
         }
@@ -72,7 +72,7 @@ abstract class Core
      */
     public function setConfigSecretKey($secretKey)
     {
-        $this->_secretKey = $secretKey;
+        $this->secretKey = $secretKey;
 
         return $this;
     }
@@ -85,7 +85,7 @@ abstract class Core
      */
     public function setConfigContentType($contentType)
     {
-        $this->_contentType = strtoupper($contentType);
+        $this->contentType = strtoupper($contentType);
 
         return $this;
     }
@@ -98,7 +98,7 @@ abstract class Core
      */
     public function setConfigRequestMethod($requestMethod)
     {
-        $this->_requestMethod = $requestMethod;
+        $this->requestMethod = $requestMethod;
 
         return $this;
     }
@@ -141,7 +141,7 @@ abstract class Core
     {
         $action = ucfirst($name);
 
-        return $this->generateUrlBody($params, $this->_secretKey, $this->_contentType, $this->_requestMethod, $this->_serverHost.$name, $body);
+        return $this->generateUrlBody($params, $this->secretKey, $this->contentType, $this->requestMethod, $this->serverHost.$name, $body);
     }
 
     /**
@@ -159,15 +159,19 @@ abstract class Core
      */
     public static function generateUrlBody($paramArray, $secretKey, $contentType, $requestMethod, $url, $body)
     {
+        $header = [];
+        $urlBopy = [];
         if ($contentType) {
             $header[] = 'Content-Type:'.strtolower($contentType);
         }
 
         $header[] = 'Ocp-Apim-Subscription-Key:'.$secretKey;
         switch ($requestMethod) {
-            case 'GET': $url .= '&'.http_build_query($body);
+            case 'GET': 
+                $url .= '&'.http_build_query($body);
                 break;
-            default:  $url .= '?'.http_build_query($paramArray);
+            default:  
+                $url .= '?'.http_build_query($paramArray);
                 $urlBody['body'] = $body;
                 break;
         }
@@ -245,9 +249,11 @@ abstract class Core
         $url = $requestHost;
 
         switch ($requestMethod) {
-            case 'POST': $url .= '?'.http_build_query($param);
+            case 'POST': 
+                $url .= '?'.http_build_query($param);
                 break;
-            default: $url .= '&'.http_build_query($body);
+            default: 
+                $url .= '&'.http_build_query($body);
                 break;
         }
         $request = new Request($requestMethod, $url, $header, $body);
