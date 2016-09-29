@@ -22,22 +22,22 @@ abstract class Core
      */
     protected $secretKey = '';
 
-     /**
+    /**
      * $contentType
      * 接口域名.
      *
      * @var string
      */
-    protected $contentType = '';   
+    protected $contentType = '';
 
-     /**
+    /**
      * $requestMethod
      * 接口域名.
      *
      * @var string
      */
-    protected $requestMethod = '';       
-    
+    protected $requestMethod = '';
+
     /**
      * __construct.
      *
