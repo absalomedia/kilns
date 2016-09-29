@@ -167,10 +167,10 @@ abstract class Core
 
         $header[] = 'Ocp-Apim-Subscription-Key:'.$secretKey;
         switch ($requestMethod) {
-            case 'GET': 
+            case 'GET':
                 $url .= '&'.http_build_query($body);
                 break;
-            default:  
+            default:
                 $url .= '?'.http_build_query($paramArray);
                 $urlBody['body'] = $body;
                 break;
@@ -249,10 +249,10 @@ abstract class Core
         $url = $requestHost;
 
         switch ($requestMethod) {
-            case 'POST': 
+            case 'POST':
                 $url .= '?'.http_build_query($param);
                 break;
-            default: 
+            default:
                 $url .= '&'.http_build_query($body);
                 break;
         }
