@@ -1,0 +1,31 @@
+{
+    "name": "abm/kilns",
+    "description": "Kilns: Project Oxford SDK",
+    "license": "MIT",
+    "keywords": ["azure","cognition","ai","deeplearning","microsoft","sdk","NLP","oxford", "guzzle"],
+    "authors": [
+        {
+            "name": "Lawrence Meckan",
+            "email": "media@absalom.biz"
+        },
+        {
+            "name": "Xiaoting He"
+        }		
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.0",
+        "codeclimate/php-test-reporter": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ABM\\Kilns\\": "src"
+        }
+    },
+  "support": {
+    "issues": "https://github.com/absalomedia/kilns/issues"
+  },
+
+  "replace": {
+    "abm/kilns": "self.version"
+  }
+}
