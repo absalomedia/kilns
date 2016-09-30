@@ -97,7 +97,6 @@ abstract class Core
      * setConfigRequestMethod
      * 设置请求方法.
      *
-     * @param string $method
      */
     public function setConfigContentType($contentType)
     {
@@ -110,7 +109,6 @@ abstract class Core
      * setConfigSecretKey
      * 设置secretKey.
      *
-     * @param string $secretKey
      */
     public function setConfigRequestMethod($requestMethod)
     {
@@ -166,7 +164,7 @@ abstract class Core
      *
      * @param array  $paramArray    请求参数
      * @param string $secretKey     订阅密钥
-     * @param string $ContentType   请求Body的类型
+     * @param string $contentType   请求Body的类型
      * @param string $requestMethod 请求方式，GET/POST
      * @param string $url           接口URL
      * @param string $body          请求Body
@@ -245,10 +243,9 @@ abstract class Core
      *
      * @param array  $paramArray    请求参数
      * @param string $secretKey     订阅密钥
-     * @param string $ContentType   请求Body的类型
+     * @param string $contentType   请求Body的类型
      * @param string $requestMethod 请求方式，GET/POST
-     * @param string $url           接口URL
-     * @param string $body          请求Body
+     * @param string $requestHost
      *
      * @return
      */
@@ -281,7 +278,7 @@ abstract class Core
      * _dealResponse
      * 处理返回.
      *
-     * @param array $response
+     * @param Request $response
      *
      * @return
      */
