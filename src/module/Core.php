@@ -96,7 +96,6 @@ abstract class Core
     /**
      * setConfigRequestMethod
      * 设置请求方法.
-     *
      */
     public function setConfigContentType($contentType)
     {
@@ -108,7 +107,6 @@ abstract class Core
     /**
      * setConfigSecretKey
      * 设置secretKey.
-     *
      */
     public function setConfigRequestMethod($requestMethod)
     {
