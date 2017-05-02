@@ -35,14 +35,14 @@ class KilnsTest extends \PHPUnit_Framework_TestCase
             $package = '{"url":"http://example.com/1.jpg"}';
 
 //$a = $service->generateUrl('Ocr', $parameters, $package);
-            $a = $service->Ocr($parameters, $package);
-        if ($a === false) {
+            $tester = $service->Ocr($parameters, $package);
+        if ($tester === false) {
             $error = $service->getError();
             echo 'Error code:'.$error->getCode().".\n";
             echo 'message:'.$error->getMessage().".\n";
             echo 'ext:'.var_export($error->getExt(), true).".\n";
         } else {
-            var_dump($a);
+            var_dump($tester);
         }
     }
 }
