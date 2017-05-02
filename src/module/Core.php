@@ -153,7 +153,7 @@ abstract class Core
     {
         $action = ucfirst($name);
 
-        return $this->generateUrlBody($params, $this->secretKey, $this->contentType, $this->requestMethod, $this->serverHost.$name, $body);
+        return $this->generateUrlBody($params, $this->secretKey, $this->contentType, $this->requestMethod, $this->serverHost.$action, $body);
     }
 
     /**
