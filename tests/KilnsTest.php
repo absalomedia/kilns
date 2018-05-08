@@ -31,11 +31,11 @@ class KilnsTest extends \PHPUnit_Framework_TestCase
                  'detectOrientation' => true,
                 ];
 
-//请求Body，请参考官方Api文档上对应接口的说明
-            $package = '{"url":"http://example.com/1.jpg"}';
+        //请求Body，请参考官方Api文档上对应接口的说明
+        $package = '{"url":"http://example.com/1.jpg"}';
 
-//$a = $service->generateUrl('Ocr', $parameters, $package);
-            $tester = $service->Ocr($parameters, $package);
+        //$a = $service->generateUrl('Ocr', $parameters, $package);
+        $tester = $service->Ocr($parameters, $package);
         if ($tester === false) {
             $error = $service->getError();
             echo 'Error code:'.$error->getCode().".\n";
