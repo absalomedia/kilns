@@ -25,8 +25,4 @@
   "support": {
     "issues": "https://github.com/absalomedia/kilns/issues"
   },
-
-  "replace": {
-    "abm/kilns": "self.version"
-  }
 }
